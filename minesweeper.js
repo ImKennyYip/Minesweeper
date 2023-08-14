@@ -1,14 +1,14 @@
-var board = [];
-var rows = 8;
-var columns = 8;
+let board = [];
+let rows = 8;
+let columns = 8;
 
-var minesCount = 10;
-var minesLocation = []; // "2-2", "3-4", "2-1"
+let minesCount = 10;
+let minesLocation = []; // "2-2", "3-4", "2-1"
 
-var tilesClicked = 0; //goal to click all tiles except the ones containing mines
-var flagEnabled = false;
+let tilesClicked = 0; //goal to click all tiles except the ones containing mines
+let flagEnabled = false;
 
-var gameOver = false;
+let gameOver = false;
 
 window.onload = function() {
     startGame();
@@ -143,6 +143,8 @@ function checkMine(r, c) {
         board[r][c].classList.add("x" + minesFound.toString());
     }
     else {
+        board[r][c].innerText = "";
+        
         //top 3
         checkMine(r-1, c-1);    //top left
         checkMine(r-1, c);      //top
@@ -162,9 +164,7 @@ function checkMine(r, c) {
         document.getElementById("mines-count").innerText = "Cleared";
         gameOver = true;
     }
-
 }
-
 
 function checkTile(r, c) {
     if (r < 0 || r >= rows || c < 0 || c >= columns) {
